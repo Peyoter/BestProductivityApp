@@ -1,1 +1,1 @@
-export {default as TheTimer } from './TheTimer.vue'
+export { default as TheTimer } from './TheTimer.vue'

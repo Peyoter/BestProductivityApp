@@ -8,12 +8,12 @@ enum TimerTypeEnum {
 }
 
 interface ITimerState {
-  time : number;
-  timerType: TimerTypeEnum,
+  time: number
+  timerType: TimerTypeEnum
 }
 
 export const useTimer = defineStore('timer', () => {
-  let intervalId = null
+  let intervalId: number;
   const timerStorage = new TimerStorageRepository()
 
   const state: ITimerState = reactive({
@@ -24,7 +24,7 @@ export const useTimer = defineStore('timer', () => {
   function InitTimer() {
     const timeStorage = timerStorage.LoadTime()
 
-    if (Number(timeStorage) > 0) {
+    if (timeStorage > 0) {
       state.time = timeStorage
       return
     }
@@ -63,12 +63,12 @@ export const useTimer = defineStore('timer', () => {
   function PauseTimer() {
     if (typeof intervalId == 'number') {
       clearInterval(intervalId)
-      intervalId = null
+      intervalId = 0
     }
   }
 
   function ToggleTimer() {
-    if (intervalId == null) {
+    if (!intervalId) {
       StarTimer()
     } else {
       PauseTimer()

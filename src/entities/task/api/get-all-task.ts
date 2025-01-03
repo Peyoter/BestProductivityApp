@@ -1,4 +1,5 @@
-import axios, { type AxiosResponse } from 'axios'
+import { type AxiosResponse } from 'axios'
+import { todoIstApi } from '@/shared/api'
 
 export interface Task {
   id: number
@@ -11,7 +12,7 @@ export interface Task {
 
 export const getAllTasks = async (): Promise<Task[]> => {
   try {
-    const response: AxiosResponse<Task[]> = await axios.get('api/tasks', {
+    const response: AxiosResponse<Task[]> = await todoIstApi.get('tasks', {
       params: {
         filter: 'today',
       },
